@@ -1,0 +1,38 @@
+[
+  {
+    "incident_id": "INC-017",
+    "service": "Payment API",
+    "severity": "P1",
+    "title": "Payment API latency increased",
+    "symptoms": ["Latency 4.2s", "Transaction requests timing out", "Database CPU increased"],
+    "investigation": "A slow transaction query was identified.",
+    "action_taken": "Added a missing database index.",
+    "result": "Latency dropped to approximately 320ms.",
+    "success": true,
+    "engineer_feedback": "Check transaction-query indexes early for similar incidents."
+  },
+  {
+    "incident_id": "INC-009",
+    "service": "Payment API",
+    "severity": "P1",
+    "title": "Database connection exhaustion",
+    "symptoms": ["Connection pool exhausted", "Intermittent API errors"],
+    "investigation": "Connection leaks were traced to an application path.",
+    "action_taken": "Increased the connection pool only.",
+    "result": "Errors returned after traffic increased.",
+    "success": false,
+    "engineer_feedback": "Do not treat pool size as the first fix when a leak is suspected."
+  },
+  {
+    "incident_id": "INC-021",
+    "service": "Checkout API",
+    "severity": "P2",
+    "title": "Checkout requests became slow",
+    "symptoms": ["P95 latency increased", "Database read latency increased"],
+    "investigation": "A query plan showed a full table scan.",
+    "action_taken": "Added a composite index.",
+    "result": "P95 latency returned to baseline.",
+    "success": true,
+    "engineer_feedback": "Compare query plans before changing application timeouts."
+  }
+]
